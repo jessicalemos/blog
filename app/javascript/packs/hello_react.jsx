@@ -2,25 +2,20 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
+const Clock = () => {
+  const [time, setTime] = useState(new Date())
+  const interval = setTimeout(() => setTime(new Date()), 1000)
 
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: PropTypes.string
+  return <div>{time.toISOString()}</div>
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello />,
+    <Clock />,
     document.body.appendChild(document.createElement('div')),
   )
 })
